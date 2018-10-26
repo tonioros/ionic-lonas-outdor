@@ -1,0 +1,7 @@
+{
+  "name": "lonas-wualter",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
