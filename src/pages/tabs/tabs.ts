@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../lista-reportes-lonas/lista-reportes-lonas';
-import { HomePage } from '../valla-maps/vallas-maps';
+import {ContactPage} from '../lista-reportes-lonas/lista-reportes-lonas';
+import {HomePage} from '../valla-maps/vallas-maps';
 
 @Component({
   templateUrl: 'tabs.html'

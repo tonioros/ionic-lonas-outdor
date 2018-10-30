@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 
-import {AboutPage} from '../pages/about/about';
 import {ContactPage} from '../pages/lista-reportes-lonas/lista-reportes-lonas';
 import {HomePage} from '../pages/valla-maps/vallas-maps';
 import {TabsPage} from '../pages/tabs/tabs';
@@ -20,15 +19,17 @@ import {ImagePicker} from "@ionic-native/image-picker";
 import {Camera} from "@ionic-native/camera";
 import {File} from '@ionic-native/file';
 import {FileTransfer} from "@ionic-native/file-transfer";
+import {UsuarioService} from "../services/usuario.service";
+import {LoginPage} from "../pages/login/login";
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     ContactPage,
     HomePage,
     TabsPage,
     ReporteLonasPage,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -38,11 +39,11 @@ import {FileTransfer} from "@ionic-native/file-transfer";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     ContactPage,
     HomePage,
     TabsPage,
     ReporteLonasPage,
+    LoginPage,
   ],
   providers: [
     StatusBar,
@@ -51,12 +52,13 @@ import {FileTransfer} from "@ionic-native/file-transfer";
     LonasService,
     GoogleMaps,
     VallaService,
+    UsuarioService,
     ImagePicker,
     Camera,
     HttpClient,
     File,
     FileTransfer,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {
