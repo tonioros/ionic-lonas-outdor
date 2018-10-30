@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Entradas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-card *ngFor="let reporte of reporteLista">
+      <img src="{{reporte.file_path}}"/>
+      <ion-card-content>
+        <ion-card-title>
+          {{reporte.nombre}}
+        </ion-card-title>
+        <h6>Lona: {{reporte.descripcion}}</h6>
+        <h6>Direccion: {{reporte.direccion}}</h6>
+        <p>{{!!reporte.observaciones && reporte.observaciones.length > 1 ?
+          reporte.observaciones: 'Sin observaciones'}}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-list>
+</ion-content>

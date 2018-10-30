@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation';
 import {
   GoogleMaps,
@@ -8,7 +7,7 @@ import {
   Marker,
   MarkerOptions, LatLng, Environment
 } from '@ionic-native/google-maps';
-import {VayaService} from "../../services/vaya.service";
+import {VallaService} from "../../services/valla.service";
 import {BaseComponent} from "../../base/base-component.component";
 import {ReporteLonasPage} from "../reporte-lonas/reporte-lonas";
 
@@ -25,12 +24,9 @@ export class HomePage extends BaseComponent {
   map: GoogleMap;
   latLong: LatLng = new LatLng(this.latLon.lat, this.latLon.lon);
 
-
   constructor(private geolocation: Geolocation,
-              private navCtrl: NavController,
-              private vayaService: VayaService,
-              private alertCtrl: AlertController) {
-    super(alertCtrl);
+              private vayaService: VallaService) {
+    super();
   }
 
 // Load map only after view is initialized
@@ -61,12 +57,9 @@ export class HomePage extends BaseComponent {
       }
     })
       .catch((error) => {
-        let alert = this.alertCtrl.create({
-          title: 'Error en Ubicacion',
-          subTitle: 'No hemos podido obtener tu ubicacion :( | Error: ' + error.message,
-          buttons: ['Ok!']
-        });
-        alert.present();
+        this.showAlertOk('Error en Ubicacion',
+          'No hemos podido obtener tu ubicacion :( | Error: ' + error.message)
+          .present();
         this.map.moveCamera({target: this.latLong, zoom: 18, tilt: 30});
       });
   }
@@ -75,13 +68,12 @@ export class HomePage extends BaseComponent {
     let element: HTMLElement = document.getElementById('map');
     this.map = GoogleMaps.create(element);
 
-    this.map.one(GoogleMapsEvent.MAP_READY).then(
-      () => {
-        console.log('Map is ready!');
-      }
-    );
+    this.map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Mapa cargado'))
+      .catch(err => {
+        this.showAlertOk("Error", JSON.stringify(err)).present();
+      });
 
-    this.latLong = new LatLng(43.0741904, -89.3809802);
+    this.latLong = new LatLng(this.latLon.lat, this.latLon.lon);
     this.map.moveCamera({
       target: this.latLong,
       zoom: 18,
@@ -93,12 +85,13 @@ export class HomePage extends BaseComponent {
   }
 
   loadVayas(): void {
-    this.vayaService.getVayas().subscribe(resp => {
-      for (let data of resp.res) {
-        this.generateMarker(data);
-      }
-    },
-        err => this.showAlertOk("Error on response HTTP", JSON.stringify(err)));
+    this.vayaService.getVallas().subscribe(resp => {
+        for (let data of resp.res) {
+          this.generateMarker(data);
+        }
+      },
+      err => this.showAlertOk("Error on response HTTP",
+        JSON.stringify(err)).present());
   }
 
   generateMarker(datos) {
@@ -115,7 +108,8 @@ export class HomePage extends BaseComponent {
           .subscribe((value) => {
             this.navCtrl.push(ReporteLonasPage, {datos});
           }, (error) => {
-            this.showAlertOk("Error", marker.getTitle() + " " + error);
+            this.showAlertOk("Error",
+              marker.getTitle() + " " + error).present();
           })
       });
   }

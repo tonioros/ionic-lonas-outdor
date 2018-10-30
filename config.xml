@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.lonas.outdor" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>lonas-wualter</name>
     <description>Proyecto de graduacion</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Alguien por ahi</author>
@@ -89,10 +89,16 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Necesitamos obtener tu ubicacion para centrar el mapa" />
     </plugin>
     <plugin name="cordova-plugin-advanced-http" spec="2.0.1" />
-    <plugin name="cordova-plugin-googlemaps" spec="2.4.6">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyC0qXJl1kq_rvOM_Zz8_32JRW1GceCP-sU" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyC0qXJl1kq_rvOM_Zz8_32JRW1GceCP-sU" />
+    <plugin name="cordova-plugin-telerik-imagepicker" spec="2.2.2">
+        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Necesito permisos para obtener la imagen de tu galeria" />
     </plugin>
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="cordova-plugin-googlemaps" spec="2.4.6">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBH3i9QkCsXaCZBXe_e38uXe2_SOZ9VumE" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyBH3i9QkCsXaCZBXe_e38uXe2_SOZ9VumE" />
+    </plugin>
+    <plugin name="cordova-plugin-file" spec="6.0.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
     <engine name="android" spec="7.1.1" />
     <engine name="browser" spec="5.0.4" />
 </widget>

@@ -9,58 +9,58 @@
   <ion-navbar>
     <ion-title>Generar Reporte</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
-  <h2>Vaya Pacaya</h2>
+  <div *ngIf="!ready">
+    <h2>Cargando...
+      <ion-icon ios="ios-sync" md="md-sync"></ion-icon>
+    </h2>
+  </div>
+  <div *ngIf="ready">
+    <h3 style="font-weight: lighter">{{lona.descripcion}}</h3>
+    <h6 style="font-weight: lighter">Tamaño: {{lona.tamanio}}</h6>
+    <h5 *ngIf="defectos.length != 0" style="font-weight: lighter">Defectos</h5>
+    <ion-list>
+      <ion-item *ngFor="let deff of defectos">
+        <ion-label>{{deff.nombre_estado}}</ion-label>
+        <ion-checkbox #check_def color="blue" checked="false"
+                      (ionChange)="clickCheckEstado(deff.id, check_def)"></ion-checkbox>
+      </ion-item>
+    </ion-list>
 
-  <h4>Defectos</h4>
-  <ion-list>
-    <ion-item>
-      <ion-label>Daenerys Targaryen</ion-label>
-      <ion-checkbox color="blue" checked="true"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Lonas arrugadas</ion-label>
-      <ion-checkbox color="blue" checked="true"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Vinil mal pegado</ion-label>
-      <ion-checkbox color="blue" checked="true"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Esquinas dobladas</ion-label>
-      <ion-checkbox color="blue" checked="true"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Requiere Chapeo</ion-label>
-      <ion-checkbox color="blue" checked="true"></ion-checkbox>
-    </ion-item>
-  </ion-list>
+    <h5 *ngIf="caracteristicas.length != 0" style="font-weight: lighter">Caracteristicas</h5>
+    <ion-list>
+      <ion-item *ngFor="let caract of caracteristicas">
+        <ion-label>{{caract.nombre_estado}}</ion-label>
+        <ion-checkbox #check_cara color="green" checked="false" (ionChange)="clickCheckEstado(caract.id, check_cara)"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <div>
+      <ion-list>
+        <ion-item>
+          <label fixed>Captura una imagen para el reporte</label>
+          <div style="width: 100%">
+            <button ion-button style="float: right; width: 50%" (click)="getImageFromCamera()">
+              <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+              Camara
+            </button>
+            <button ion-button (click)="getImageFromGallery()" style="width: 50%">
+              <ion-icon ios="ios-image" md="md-image"></ion-icon>
+              Galeria
+            </button>
+          </div>
+        </ion-item>
 
-  <h4>Caracteristicas</h4>
-  <ion-list>
-    <ion-item>
-      <ion-label>Optimo</ion-label>
-      <ion-checkbox color="blue" checked="green"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Luz 2</ion-label>
-      <ion-checkbox color="blue" checked="green"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Sin opacacion y con Luz</ion-label>
-      <ion-checkbox color="blue" checked="green"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Luz 4</ion-label>
-      <ion-checkbox color="blue" checked="green"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Sin Opacacion</ion-label>
-      <ion-checkbox color="blue" checked="green"></ion-checkbox>
-    </ion-item>
-  </ion-list>
+          <ion-item>
+          <ion-label floating>Observaciones</ion-label>
+          <ion-input type="text" [(ngModel)]="observaciones"></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <button style="margin: auto" ion-button color="secondary" round (click)="saveReporte()" item-right>
+      <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle" margin-right="5px"></ion-icon>
+      Guardar
+    </button>
+  </div>
 </ion-content>
