@@ -13,14 +13,14 @@ import {GoogleMaps} from "@ionic-native/google-maps";
 import {Geolocation} from '@ionic-native/geolocation';
 import {VallaService} from "../services/valla.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ReporteLonasPage} from "../pages/reporte-lonas/reporte-lonas";
 import {LonasService} from "../services/lonas.service";
 import {ImagePicker} from "@ionic-native/image-picker";
 import {Camera} from "@ionic-native/camera";
 import {File} from '@ionic-native/file';
 import {FileTransfer} from "@ionic-native/file-transfer";
 import {UsuarioService} from "../services/usuario.service";
-import {LoginPage} from "../pages/login/login";
+import {ReporteLonasPageModule} from "../pages/reporte-lonas/reporte-lonas.module";
+import {LoginPageModule} from "../pages/login/login.module";
 
 @NgModule({
   declarations: [
@@ -28,13 +28,13 @@ import {LoginPage} from "../pages/login/login";
     ContactPage,
     HomePage,
     TabsPage,
-    ReporteLonasPage,
-    LoginPage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ReporteLonasPageModule,
+    LoginPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,8 +42,6 @@ import {LoginPage} from "../pages/login/login";
     ContactPage,
     HomePage,
     TabsPage,
-    ReporteLonasPage,
-    LoginPage,
   ],
   providers: [
     StatusBar,
@@ -59,7 +57,7 @@ import {LoginPage} from "../pages/login/login";
     File,
     FileTransfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-  ]
+  ],
 })
 export class AppModule {
 }

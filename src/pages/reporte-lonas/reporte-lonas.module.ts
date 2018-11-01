@@ -12,6 +12,9 @@ import {VallaService} from "../../services/valla.service";
   ],
   providers: [
     VallaService,
+  ],
+  entryComponents: [
+    ReporteLonasPage,
   ]
 })
 export class ReporteLonasPageModule {}
